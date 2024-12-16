@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,15 +6,13 @@ function Navbar() {
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link
-          to="/"
-          className="text-3xl font-bold text-transparent bg-clip-text 
-            bg-gradient-to-r from-blue-600 to-purple-600"
+        <a
+          href="/"
+          className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"
         >
-          YourBrand
-        </Link>
+          GLOBALNEST
+        </a>
 
-        {/* Mobile menu button */}
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -55,7 +52,6 @@ function Navbar() {
           </button>
         </div>
 
-        {/* Navigation links */}
         <div
           className={`
           ${isOpen ? "block" : "hidden"} 
@@ -65,22 +61,36 @@ function Navbar() {
           shadow-lg md:shadow-none
           p-4 md:p-0`}
         >
-          {[
-            { name: "Home", path: "/" },
-            { name: "Products", path: "/products" },
-            { name: "About", path: "/about" },
-            { name: "Contact", path: "/contact" },
-          ].map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className="block md:inline-block text-gray-700 
-                hover:text-blue-600 font-medium 
-                transition duration-300"
-            >
-              {link.name}
-            </Link>
-          ))}
+          <a
+            href="/"
+            className="block md:inline-block text-gray-700 hover:text-blue-600 font-medium transition duration-300"
+          >
+            Home
+          </a>
+          <a
+            href="/products"
+            className="block md:inline-block text-gray-700 hover:text-blue-600 font-medium transition duration-300"
+          >
+            Products
+          </a>
+          <a
+            href="/about"
+            className="block md:inline-block text-gray-700 hover:text-blue-600 font-medium transition duration-300"
+          >
+            About
+          </a>
+          <a
+            href="/contact"
+            className="block md:inline-block text-gray-700 hover:text-blue-600 font-medium transition duration-300"
+          >
+            Contact
+          </a>
+          <a
+            href="/account"
+            className="block md:inline-block text-gray-700 hover:text-blue-600 font-medium transition duration-300"
+          >
+            My Account
+          </a>
         </div>
       </div>
     </nav>
