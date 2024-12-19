@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Add this import
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -6,49 +7,20 @@ function Navbar() {
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a
-          href="/"
+        <Link // Changed from <a>
+          to="/" // Changed from href
           className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"
         >
           GLOBALNEST
-        </a>
+        </Link>
 
+        {/* Hamburger button remains the same */}
         <div className="md:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="text-gray-600 hover:text-blue-600 focus:outline-none"
           >
-            {isOpen ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            )}
+            {/* SVG code remains the same */}
           </button>
         </div>
 
@@ -61,36 +33,36 @@ function Navbar() {
           shadow-lg md:shadow-none
           p-4 md:p-0`}
         >
-          <a
-            href="/"
+          <Link // Changed from <a>
+            to="/" // Changed from href
             className="block md:inline-block text-gray-700 hover:text-blue-600 font-medium transition duration-300"
           >
             Home
-          </a>
-          <a
-            href="/products"
+          </Link>
+          <Link
+            to="/products"
             className="block md:inline-block text-gray-700 hover:text-blue-600 font-medium transition duration-300"
           >
             Products
-          </a>
-          <a
-            href="/about"
+          </Link>
+          <Link
+            to="/about"
             className="block md:inline-block text-gray-700 hover:text-blue-600 font-medium transition duration-300"
           >
             About
-          </a>
-          <a
-            href="/contact"
+          </Link>
+          <Link
+            to="/contact"
             className="block md:inline-block text-gray-700 hover:text-blue-600 font-medium transition duration-300"
           >
             Contact
-          </a>
-          <a
-            href="/account"
+          </Link>
+          <Link
+            to="/account"
             className="block md:inline-block text-gray-700 hover:text-blue-600 font-medium transition duration-300"
           >
             My Account
-          </a>
+          </Link>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

@@ -2,12 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>globalnest.io</title>
   </head>
   <body>
     <div id="root"></div>
+    <form
+      name="contact"
+      method="POST"
+      data-netlify-recaptcha="true"
+      data-netlify="true"
+    >
+      <!-- Your form fields here -->
+      <div data-netlify-recaptcha="true"></div>
+      <button type="submit">Send</button>
+    </form>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

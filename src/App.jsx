@@ -9,11 +9,18 @@ import Contact from "./pages/Contact";
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <SampleWebsiteDesign />
-      <Footer />
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<SampleWebsiteDesign />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

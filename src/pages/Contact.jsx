@@ -15,12 +15,24 @@ function Contact() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic
-    console.log("Form submitted:", formData);
-    // Reset form after submission
-    setFormData({ name: "", email: "", message: "" });
+
+    try {
+      const response = await fetch("/send", { ... });
+
+      if (response.ok) {
+        console.log("Email sent successfully!");
+        alert("Message sent!");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        console.error("Error sending email");
+        alert("Failed to send message. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred. Please try again later.");
+    }
   };
 
   return (
