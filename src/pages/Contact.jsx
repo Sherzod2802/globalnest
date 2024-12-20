@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useTheme } from "../context/ThemeContext";
 
 function Contact() {
+  const { isDarkMode } = useTheme();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,14 +22,21 @@ function Contact() {
     e.preventDefault();
 
     try {
-      const response = await fetch("/send", { ... });
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
       if (response.ok) {
         console.log("Email sent successfully!");
         alert("Message sent!");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        console.error("Error sending email");
+        const errorData = await response.json();
+        console.error("Error sending email:", errorData);
         alert("Failed to send message. Please try again later.");
       }
     } catch (error) {
@@ -36,18 +46,32 @@ function Contact() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen flex items-center justify-center py-12">
-      <div className="bg-white p-10 rounded-xl shadow-2xl w-full max-w-md">
+    <div
+      className={`min-h-screen ${
+        isDarkMode ? "bg-gray-900" : "bg-gray-50"
+      } py-12 px-4`}
+    >
+      <div
+        className={`${
+          isDarkMode ? "bg-gray-800" : "bg-white"
+        } p-10 rounded-xl shadow-2xl w-full max-w-md mx-auto`}
+      >
         <h1
-          className="text-3xl font-bold mb-6 text-center text-transparent 
-          bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"
+          className={`text-3xl font-bold mb-6 text-center ${
+            isDarkMode ? "text-gray-100" : "text-gray-900"
+          }`}
         >
           Contact Us
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-gray-700 mb-2">
+            <label
+              htmlFor="name"
+              className={`block ${
+                isDarkMode ? "text-gray-300" : "text-gray-700"
+              } mb-2`}
+            >
               Name
             </label>
             <input
@@ -56,14 +80,23 @@ function Contact() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md 
-                focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                ${
+                  isDarkMode
+                    ? "bg-gray-700 border-gray-600 text-gray-100"
+                    : "bg-gray-100 border-gray-300 text-gray-900"
+                }`}
               required
             />
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-gray-700 mb-2">
+            <label
+              htmlFor="email"
+              className={`block ${
+                isDarkMode ? "text-gray-300" : "text-gray-700"
+              } mb-2`}
+            >
               Email
             </label>
             <input
@@ -72,14 +105,23 @@ function Contact() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md 
-                focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                ${
+                  isDarkMode
+                    ? "bg-gray-700 border-gray-600 text-gray-100"
+                    : "bg-gray-100 border-gray-300 text-gray-900"
+                }`}
               required
             />
           </div>
 
           <div>
-            <label htmlFor="message" className="block text-gray-700 mb-2">
+            <label
+              htmlFor="message"
+              className={`block ${
+                isDarkMode ? "text-gray-300" : "text-gray-700"
+              } mb-2`}
+            >
               Message
             </label>
             <textarea
@@ -87,8 +129,12 @@ function Contact() {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md 
-                focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className={`w-full px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                ${
+                  isDarkMode
+                    ? "bg-gray-700 border-gray-600 text-gray-100"
+                    : "bg-gray-100 border-gray-300 text-gray-900"
+                }`}
               rows="4"
               required
             ></textarea>
